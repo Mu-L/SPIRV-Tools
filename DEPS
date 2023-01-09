@@ -3,10 +3,17 @@ use_relative_paths = True
 vars = {
   'github': 'https://github.com',
 
-  'effcee_revision': '2ec8f8738118cc483b67c04a759fee53496c5659',
-  'googletest_revision': '955c7f837efad184ec63e771c42542d37545eaef',
-  're2_revision': '4244cd1cb492fa1d10986ec67f862964c073f844',
-  'spirv_headers_revision': '19e8350415ed9516c8afffa19ae2c58559495a67',
+  'effcee_revision': '35912e1b7778ec2ddcff7e7188177761539e59e0',
+
+  # Pin to the last version of googletest that supports C++11.
+  # Anything later requires C++14
+  'googletest_revision': 'v1.12.0',
+
+  # Use protobufs before they gained the dependency on abseil
+  'protobuf_revision': 'v3.13.0.1',
+
+  're2_revision': 'd2836d1b1c34c4e330a85a1006201db474bf2c8a',
+  'spirv_headers_revision': '34d04647d384e0aed037e7a2662a655fc39841bb',
 }
 
 deps = {
@@ -15,6 +22,9 @@ deps = {
 
   'external/googletest':
       Var('github') + '/google/googletest.git@' + Var('googletest_revision'),
+
+  'external/protobuf':
+      Var('github') + '/protocolbuffers/protobuf.git@' + Var('protobuf_revision'),
 
   'external/re2':
       Var('github') + '/google/re2.git@' + Var('re2_revision'),
